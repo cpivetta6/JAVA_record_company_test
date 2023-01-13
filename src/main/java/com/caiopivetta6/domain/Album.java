@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,8 +27,11 @@ public class Album implements Serializable{
 	private String name;
 	private Integer albumYear;
 	
+	@ManyToOne
+	@JoinColumn(name = "artist_id")
 	private Artist artist;
 	
+	@OneToMany(mappedBy = "album")
 	private List<Song> song = new ArrayList<>();
 	
 	public Album() {

@@ -1,6 +1,8 @@
 package com.caiopivetta6.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -21,6 +23,10 @@ public class Artist implements Serializable {
 	private String name;
 	private String nationality;
 	
+	private List<Album> album = new ArrayList<>();
+	
+	private List<Song> song = new ArrayList<>();
+	
 	
 	public Artist() {
 		
@@ -32,6 +38,28 @@ public class Artist implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.nationality = nationality;
+	}
+	
+	
+
+
+	public List<Album> getAlbum() {
+		return album;
+	}
+
+
+	public void setAlbum(List<Album> album) {
+		this.album = album;
+	}
+
+
+	public List<Song> getSong() {
+		return song;
+	}
+
+
+	public void setSong(List<Song> song) {
+		this.song = song;
 	}
 
 

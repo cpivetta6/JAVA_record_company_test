@@ -3,18 +3,69 @@ package com.caiopivetta6.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "song_tb")
 public class Song implements Serializable{
 
 	
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private Integer duration;
 	
+	private Album album;
+	
+	private Artist artist;
+	
+	
 	public Song() {
 		
 	}
+	
+	
+
+	public Song(Integer id, String name, Integer duration) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.duration = duration;
+	}
+
+	
+
+	public Album getAlbum() {
+		return album;
+	}
+
+
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+
 
 	public Integer getId() {
 		return id;

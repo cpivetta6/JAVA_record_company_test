@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +31,12 @@ public class Album implements Serializable{
 	private String name;
 	private Integer albumYear;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "album")
 	private List<Song> song = new ArrayList<>();
 	
@@ -38,12 +44,12 @@ public class Album implements Serializable{
 		
 	}
 
-	public Album(Integer id, String name, Integer albumYear, Artist artist) {
+	public Album(Integer id, String name, Integer albumYear) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.albumYear = albumYear;
-		this.artist = artist;
+		
 	}
 	
 	

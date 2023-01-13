@@ -3,6 +3,9 @@ package com.caiopivetta6.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +28,12 @@ public class Song implements Serializable{
 	private String name;
 	private Integer duration;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "album")
 	private Album album;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "artist")
 	private Artist artist;

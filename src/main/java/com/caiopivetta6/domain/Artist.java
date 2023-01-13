@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +27,11 @@ public class Artist implements Serializable {
 	private String name;
 	private String nationality;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "artist")
 	private List<Album> album = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "artist")
 	private List<Song> song = new ArrayList<>();
 	
